@@ -1,0 +1,29 @@
+{
+    "name": "mackstar/activism",
+    "description": "A PHP Active Record ORM",
+    "keywords": [
+        "ORM",
+        "Active Record",
+        "AOP",
+        "REST"
+    ],
+    "homepage": "https://github.com/mackstar/Activism",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Activsim Contributors",
+            "homepage": "https://github.com/mackstar/Activism/graphs/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "pimple/pimple": "v1.0.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "Mackstar\\Activism": "src/"
+        }
+    }
+}
