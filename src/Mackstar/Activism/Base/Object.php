@@ -2,7 +2,7 @@
 
 namespace Mackstar\Activism\Base;
 
-class Object
+class Object extends \Pimple
 {
     
 }

@@ -26,12 +26,12 @@ Config::add('development', 'primary', array(
 Examples
 ========
 
-* Find / Update
+Find / Update
 ```
 $user = User::find($id)->use('primary');
 $user->update(['name' => 'Richard', 'age' => 21]);
 ```
-* Getters / Setters
+Getters / Setters
 ```
 echo $user->getName();
 $user->setName('Another Name');
