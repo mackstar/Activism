@@ -11,7 +11,7 @@ There are only few 'Active Record' libraries available in PHP.
 
 Configuration
 ========
-
+```
 use Mackstar/Activism/Base/Config;
 
 Config::add('development', 'primary', array(
@@ -19,22 +19,25 @@ Config::add('development', 'primary', array(
 	'username' => 'user',
 	'password' => ''
 ));
-
+```
 Examples
 ========
 
 * Find / Update
-
+```
 $user = User::find($id)->use('primary');
 $user->update(['name' => 'Richard', 'age' => 21]);
-
+```
 * Getters / Setters
+```
 echo $user->getName();
 $user->setName('Another Name');
 $user->save();
+```
 
 Class Specification
 ===================
+```
 namespace Project\Models;
 
 class User extends Mackstar/Activism/Base/Model
@@ -50,6 +53,7 @@ class Comments extends Mackstar/Activism/Base/Model
     'user'
   ];
 }
+```
 
 
 Callbacks
@@ -57,7 +61,9 @@ Callbacks
 
 Relationships
 =============
+```
 $user->getCompany()->getName();
+```
 
 Adapters
 =============
