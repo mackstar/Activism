@@ -15,9 +15,12 @@ Configuration
 use Mackstar/Activism/Base/Config;
 
 Config::add('development', 'primary', array(
-	'adapter' => 'Mackstar/Activism/Adapters/DBAL',
-	'username' => 'user',
-	'password' => ''
+  'adapter' => 'Mackstar/Activism/Adapters/DBAL',
+  'dbname' => 'mydb',
+  'user' => 'user',
+  'password' => 'secret',
+  'host' => 'localhost',
+  'driver' => 'pdo_mysql'
 ));
 
 Examples
