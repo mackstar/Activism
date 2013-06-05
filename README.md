@@ -14,7 +14,7 @@ Configuration
 ```
 use Mackstar/Activism/Base/Config;
 
-Config::add('development', 'primary', array(
+Config::add('development|all|test', 'default', array(
   'adapter' => 'Mackstar/Activism/Adapters/DBAL',
   'dbname' => 'mydb',
   'user' => 'user',

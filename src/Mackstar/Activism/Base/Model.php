@@ -4,10 +4,15 @@ namespace Mackstar\Activism\Base;
 
 class Model extends \Pimple
 {
+    protected $adapter;
+    
+
+    
     public function __construct()
     {
-        //$this['results'] = new Results;
-        //$this['data'] = new Object;
+        $this['results'] = new Results;
+        $this['data'] = new Object;
+        $this['adapter'] = new Results;
     }
     
     public function __set()
@@ -15,7 +20,11 @@ class Model extends \Pimple
         
     }
     
+    public function toJson()
+    {
+        
+    }
     
-    
-    
+    public function shema()
+
 }

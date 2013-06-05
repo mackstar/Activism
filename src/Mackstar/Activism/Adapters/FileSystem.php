@@ -2,7 +2,7 @@
 
 namespace Mackstar\Activism\Adapters;
 
-class FileSystem implements AdapterInterface
+class FileSystem extends AdapterBase implements AdapterInterface
 {
     public function read($array) {
         
@@ -17,6 +17,10 @@ class FileSystem implements AdapterInterface
     }
     
     public function update($array) {
+        
+    }
+    
+    public function schema() {
         
     }
 }
