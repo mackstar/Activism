@@ -1,17 +1,27 @@
 <?php
 
-namespace Activism\Test\Base;
+namespace Mackstar\Activism\Test\Base;
 
-use Activism\Test\Base\Config;
+use Mackstar\Activism\Base\Config;
 
-class CongfigTest extends extends \PHPUnit_Framework_TestCase
+class CongfigTest extends \PHPUnit_Framework_TestCase
 {
+    public function tearDown() {
+        Config::clear();
+    }
+    
     public function testCanAddConfigWithDefaults() {
-        Config::add(
-            array(
-                
-            )
+        $config = array(
+            'dbname' => 'mydb',
+            'user' => 'user',
+            'password' => 'secret',
+            'host' => 'localhost',
+            'driver' => 'pdo_mysql'
         );
+        Config::add('all', 'default', $config);
+         
+        $result = Config::get();
+        $this->assertEquals($result, $config);
     }
 }
 ?>

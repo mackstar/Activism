@@ -4,7 +4,7 @@ namespace Mackstar\Activism\Base;
 
 class Config
 {
-    protected static $config;
+    protected static $conf = array();
 
     /**
      * Adds the specified connection
@@ -33,7 +33,7 @@ class Config
      * @param $environment string
      * @return array
      */
-    public static function get($alias = 'primary', $environment = 'all') {
+    public static function get($alias = 'default', $environment = 'all') {
         if ($environment == 'all' || !isset(static::$conf[$alias])) {
             return static::$conf[$alias];
         }
@@ -46,6 +46,6 @@ class Config
      * @return void
      */
     public static function clear() {
-        static::$conf[$alias] = array();
+        static::$conf = array();
     }
 }
