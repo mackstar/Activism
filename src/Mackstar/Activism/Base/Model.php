@@ -26,5 +26,12 @@ class Model extends \Pimple
     }
     
     public function shema()
+    {
+
+    }
+
+    public function create($parameters)
+    {
+    }
 
 }
