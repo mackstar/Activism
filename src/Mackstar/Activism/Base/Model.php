@@ -4,20 +4,24 @@ namespace Mackstar\Activism\Base;
 
 class Model extends \Pimple
 {
-    protected $adapter;
-    
-
+    protected static $instance;
     
     public function __construct()
     {
-        $this['results'] = new Results;
-        $this['data'] = new Object;
-        $this['adapter'] = new Results;
+        //$this['results'] = new Results;
+        //$this['data'] = new Object;
     }
     
-    public function __set()
+    public function __set($method, $args)
     {
         
+    }
+    
+    protected static function setUp() {
+        $class = get_called_class();
+        if (!self::$instance) {
+            self::$instance = new $class;
+        }
     }
     
     public function toJson()
@@ -30,8 +34,11 @@ class Model extends \Pimple
 
     }
 
-    public function create($parameters)
+    public static function create($parameters)
     {
+        self::setUp();
+        return self::$instance;
     }
+    
 
 }

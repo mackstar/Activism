@@ -23,7 +23,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Mackstar\\Activism": "src/"
+            "Mackstar\\Activism": "src/",
+            "Mackstar\\Activism\\Test": "tests/"
         }
     }
 }
