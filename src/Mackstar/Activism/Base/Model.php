@@ -17,6 +17,12 @@ class Model extends \Pimple
         
     }
     
+    protected static function config($config = 'default') {
+        if (isset($this->_config)) {
+            $config = $this->_config;
+        }
+    }
+    
     protected static function setUp() {
         $class = get_called_class();
         if (!self::$instance) {

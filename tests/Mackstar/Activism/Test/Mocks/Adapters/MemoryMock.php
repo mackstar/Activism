@@ -1,12 +1,10 @@
 <?php
 
-namespace Mackstar\Activism\Test\Crud;
+namespace Mackstar\Activism\Test\Mocks\Adapters;
 
-use Mackstar\Activism\Test\Mocks\Models\User;
-use Mackstar\Activism\Base\Config;
+use Mackstar\Activism\Adapters\Memory;
 
-
-class MemoryTest extends \PHPUnit_Framework_TestCase
+class MemoryMock extends \PHPUnit_Framework_TestCase
 {
     public function setUp() {
         Config::add('all', 'default', array('adapter' => 'memory'));

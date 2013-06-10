@@ -4,8 +4,9 @@ namespace Mackstar\Activism\Adapters;
 
 class Memory implements AdapterInterface
 {
+    protected $data;
+    
     public function read($array) {
-        
     }
     
     public function write($array) {
