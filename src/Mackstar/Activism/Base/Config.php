@@ -40,6 +40,14 @@ class Config
         return static::$conf[$alias][$environment];
     }
     
+    public static function setEnvironment($environment) {
+        static::$environment = $environment;
+    }
+    
+    public static function setConnection($connection) {
+        static::$environment = $environment;
+    }
+    
     /**
      * Clears connections, mainly for use in testing
      *

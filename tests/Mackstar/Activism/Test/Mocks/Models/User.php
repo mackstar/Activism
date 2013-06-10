@@ -8,5 +8,11 @@ class User extends \Mackstar\Activism\Base\Model
         'name' => ['type' => 'varchar', 'length' => 100]
     ];
     
+    protected $config = array(
+        'adapter' => 'Memory';
+    );
+    
+    protected $key = 'id';
+    
     
 }

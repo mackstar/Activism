@@ -6,9 +6,12 @@ class Model extends \Pimple
 {
     protected static $instance;
     
+    protected static $config;
+    
     public function __construct()
     {
         //$this['results'] = new Results;
+        //$this['adapter'] = new Adapter;
         //$this['data'] = new Object;
     }
     
@@ -17,7 +20,18 @@ class Model extends \Pimple
         
     }
     
-    protected static function config($config = 'default') {
+    public function __get($method, $args)
+    {
+        
+    }
+    
+    public static function config($config = 'default') {
+        if (isset($this->_config)) {
+            $config = $this->_config;
+        }
+    }
+    
+    public static function setConfig($config = 'default') {
         if (isset($this->_config)) {
             $config = $this->_config;
         }
@@ -28,7 +42,12 @@ class Model extends \Pimple
         if (!self::$instance) {
             self::$instance = new $class;
         }
+        $config = 
+        if (static::$config) {
+            self::$instance->setConfig();
+        }
     }
+    
     
     public function toJson()
     {
