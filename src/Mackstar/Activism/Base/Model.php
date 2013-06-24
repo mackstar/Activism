@@ -20,9 +20,10 @@ class Model extends \Pimple
         
     }
     
-    public function __get($method, $args)
+    public function __get($method)
     {
-        
+        var_dump($method);
+        exit;
     }
     
     public static function config($config = 'default') {
@@ -42,10 +43,23 @@ class Model extends \Pimple
         if (!self::$instance) {
             self::$instance = new $class;
         }
-        $config = 
+        $config = Config::get();
         if (static::$config) {
-            self::$instance->setConfig();
+            self::$instance->setConfig($config);
         }
+    }
+    
+    public function setConfig($config) {
+        $this->_config['key'] = 'id';
+        if (isset($this->_key)) {
+            $this->_config['key'] = $this->_key;
+        }
+        $config = array_merge($this->_config, $config);
+        $adapter = $config['adapter'];
+        if (strpos($adapter, '\\') === false) {
+            $adapter = 'Mackstar\\Activism\\Adapters\\' . $adapter;
+        }
+        $this['adapter'] = new $adapter($config);
     }
     
     
@@ -62,7 +76,9 @@ class Model extends \Pimple
     public static function create($parameters)
     {
         self::setUp();
-        return self::$instance;
+        $instance = self::$instance;
+        $instance->getAdapter()->write($parameters);
+        return $instance;
     }
     
 

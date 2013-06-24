@@ -4,15 +4,15 @@ namespace Mackstar\Activism\Test\Mocks\Models;
 
 class User extends \Mackstar\Activism\Base\Model
 {
-    protected $schema = [
+    protected $_schema = [
         'name' => ['type' => 'varchar', 'length' => 100]
     ];
     
-    protected $config = array(
-        'adapter' => 'Memory';
+    protected $_config = array(
+        'adapter' => 'Memory'
     );
     
-    protected $key = 'id';
+    protected $_key = 'id';
     
     
 }
