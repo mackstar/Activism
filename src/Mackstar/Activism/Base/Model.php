@@ -8,12 +8,7 @@ class Model extends \Pimple
     
     protected static $config;
     
-    public function __set($method, $args)
-    {
-        
-    }
-    
-    public function __get($method)
+    public function __call($method, $args)
     {
         var_dump($method);
         exit;
