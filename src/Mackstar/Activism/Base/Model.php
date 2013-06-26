@@ -10,9 +10,13 @@ class Model extends \Pimple
     
     public function __call($method, $args)
     {
-        var_dump($method);
-        exit;
+        switch(substr($method, 0, 3)) {
+            case 'get':
+                return $this['object']->get(substr($method, 3));
+                break;
+        }
     }
+    
     
     public static function config($config = 'default') {
         if (isset($this->_config)) {
@@ -54,7 +58,7 @@ class Model extends \Pimple
         return $this['adapter'];
     }
     
-    public function shema()
+    public function schema()
     {
 
     }
@@ -63,7 +67,8 @@ class Model extends \Pimple
     {
         self::setUp();
         $instance = self::$instance;
-        $instance->getAdapter()->write($parameters);
+        $data = $instance->getAdapter()->write($parameters);
+        $this['object'] = new Object($data);
         return $instance;
     }
     

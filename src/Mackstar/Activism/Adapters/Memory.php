@@ -19,6 +19,7 @@ class Memory extends AdapterBase implements AdapterInterface
             $array[$key] = Security::uuid();
         }
         $this->_data[$array[$key]] = $array;
+        return $array;
     }
     
     public function remove($array) {
