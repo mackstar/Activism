@@ -8,13 +8,6 @@ class Model extends \Pimple
     
     protected static $config;
     
-    public function __construct()
-    {
-        //$this['results'] = new Results;
-        //$this['adapter'] = new Adapter;
-        //$this['data'] = new Object;
-    }
-    
     public function __set($method, $args)
     {
         
@@ -32,19 +25,12 @@ class Model extends \Pimple
         }
     }
     
-    public static function setConfig($config = 'default') {
-        if (isset($this->_config)) {
-            $config = $this->_config;
-        }
-    }
-    
     protected static function setUp() {
         $class = get_called_class();
         if (!self::$instance) {
             self::$instance = new $class;
         }
-        $config = Config::get();
-        if (static::$config) {
+        if ($config = Config::get()) {
             self::$instance->setConfig($config);
         }
     }
@@ -66,6 +52,11 @@ class Model extends \Pimple
     public function toJson()
     {
         
+    }
+    
+    public function getAdapter()
+    {
+        return $this['adapter'];
     }
     
     public function shema()

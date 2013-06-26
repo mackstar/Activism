@@ -2,11 +2,18 @@
 
 namespace Mackstar\Activism\Adapters;
 
-class Memory implements AdapterInterface
+class Memory extends AdapterBase implements AdapterInterface
 {
     protected $_data;
     
     protected $_config;
+    
+    /**
+     * @var mixed $_key
+     * 
+     */
+    protected $_key;
+    
     
     public function __construct($config) {
         $this->_config = $config;
@@ -16,7 +23,9 @@ class Memory implements AdapterInterface
     }
     
     public function write($array) {
-        $key = $this->_key;
+        if ($this->_key) {
+            $key = $this->_key;
+        }
         if (!isset($array[$key]) || !$array[$key]) {
             $array[$key] = new Id;
         }

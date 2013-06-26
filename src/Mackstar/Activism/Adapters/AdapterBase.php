@@ -4,17 +4,13 @@ namespace Mackstar\Activism\Adapters;
 
 class AdapterBase
 {
-    protected $object;
+    protected $_key;
     
-    public function setObject() {
-        $this->object = $object;
+    public function __construct() {}
+
+    public function setKey($key) {
+        $this->_key = $key;
     }
-    
-    public function schema() {
-        if ($this->object->schema()) {
-            
-        }
-    }
-    
+
 
 }

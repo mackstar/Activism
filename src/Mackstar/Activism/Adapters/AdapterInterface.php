@@ -4,11 +4,11 @@ namespace Mackstar\Activism\Adapters;
 
 interface AdapterInterface
 {
-    public function read();
+    public function read($array);
     
-    public function write();
+    public function write($array);
     
-    public function remove();
+    public function remove($array);
     
-    public function update();
+    public function update($array);
 }
