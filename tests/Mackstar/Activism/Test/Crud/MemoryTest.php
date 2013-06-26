@@ -22,7 +22,8 @@ class MemoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($user->getName(), 'Richard');
     }
 
-    public function testClearDatabase() {
-        $user = User::create(array('name' => 'Richard'));
-    }
+    // public function testClearDatabase() {
+    //     $user = User::create(array('name' => 'Richard'));
+    //     
+    // }
 }

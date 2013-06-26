@@ -58,9 +58,9 @@ class Model extends \Pimple
         return $this['adapter'];
     }
     
-    public function schema()
+    public function setData($data)
     {
-
+        $this['object'] = new Object($data);
     }
 
     public static function create($parameters)
@@ -68,7 +68,7 @@ class Model extends \Pimple
         self::setUp();
         $instance = self::$instance;
         $data = $instance->getAdapter()->write($parameters);
-        $this['object'] = new Object($data);
+        $instance->setData($data);
         return $instance;
     }
     
