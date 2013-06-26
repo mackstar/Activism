@@ -8,24 +8,11 @@ class Memory extends AdapterBase implements AdapterInterface
     
     protected $_config;
     
-    /**
-     * @var mixed $_key
-     * 
-     */
-    protected $_key;
-    
-    
-    public function __construct($config) {
-        $this->_config = $config;
-    }
-    
     public function read($array) {
     }
     
     public function write($array) {
-        if ($this->_key) {
-            $key = $this->_key;
-        }
+        $key = $this->_config['key'];
         if (!isset($array[$key]) || !$array[$key]) {
             $array[$key] = new Id;
         }

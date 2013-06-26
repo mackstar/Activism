@@ -4,13 +4,10 @@ namespace Mackstar\Activism\Adapters;
 
 class AdapterBase
 {
-    protected $_key;
+    protected $_config;
     
-    public function __construct() {}
-
-    public function setKey($key) {
-        $this->_key = $key;
+    public function __construct($config) {
+        $this->_config = $config;
     }
-
 
 }
