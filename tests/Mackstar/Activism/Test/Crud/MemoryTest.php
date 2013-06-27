@@ -11,6 +11,10 @@ class MemoryTest extends \PHPUnit_Framework_TestCase
     public function setUp() {
         Config::add('all', 'default', array('adapter' => 'memory'));
     }
+    
+    public function tearDown() {
+        User::clear();
+    }
 
     public function testThatCallingCreateCreatesAnInstanceOfSelf() {
         $user = User::create(array('name' => 'Richard'));

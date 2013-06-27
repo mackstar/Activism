@@ -17,6 +17,15 @@ class Model extends \Pimple
         }
     }
     
+    static function clear() {
+        static::$instance = null;
+        static::$config = null;
+    }
+    
+    public static function instance() {
+        return static::$instance;
+    }
+    
     
     public static function config($config = 'default') {
         if (isset($this->_config)) {
@@ -26,11 +35,11 @@ class Model extends \Pimple
     
     protected static function setUp() {
         $class = get_called_class();
-        if (!self::$instance) {
-            self::$instance = new $class;
+        if (!static::$instance) {
+            static::$instance = new $class;
         }
         if ($config = Config::get()) {
-            self::$instance->setConfig($config);
+            static::$instance->setConfig($config);
         }
     }
     
@@ -40,6 +49,9 @@ class Model extends \Pimple
             $this->_config['key'] = $this->_key;
         }
         $config = array_merge($this->_config, $config);
+        if (isset($this['adapter'])) {
+            return;
+        }
         $adapter = $config['adapter'];
         if (strpos($adapter, '\\') === false) {
             $adapter = 'Mackstar\\Activism\\Adapters\\' . $adapter;
@@ -47,6 +59,14 @@ class Model extends \Pimple
         $this['adapter'] = new $adapter($config);
     }
     
+    public static function find($key) {
+        
+        static::setUp();
+        $instance = self::$instance;
+        $data = $instance->getAdapter()->read(array('key' => $key));
+        $instance->setData($data);
+        return $instance;
+    }
     
     public function toJson()
     {
@@ -66,10 +86,9 @@ class Model extends \Pimple
     public static function create($parameters)
     {
         self::setUp();
-        $instance = self::$instance;
-        $data = $instance->getAdapter()->write($parameters);
-        $instance->setData($data);
-        return $instance;
+        $data = self::$instance->getAdapter()->write($parameters);
+        self::$instance->setData($data);
+        return self::$instance;
     }
     
 

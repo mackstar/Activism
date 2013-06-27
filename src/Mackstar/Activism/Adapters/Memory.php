@@ -11,6 +11,10 @@ class Memory extends AdapterBase implements AdapterInterface
     protected $_config;
     
     public function read($array) {
+        $key = $this->_config['key'];
+        if (isset($array['key'])) {
+            return $this->_data[$array['key']];
+        }
     }
     
     public function write($array) {
