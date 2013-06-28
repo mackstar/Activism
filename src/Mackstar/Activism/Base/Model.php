@@ -68,6 +68,15 @@ class Model extends \Pimple
         return $instance;
     }
     
+    public static function findAll()
+    {
+        static::setUp();
+        $instance = self::$instance;
+        $data = $instance->getAdapter()->read();
+        $instance->setResultSet($data);
+        return $instance;
+    }
+    
     public function toJson()
     {
         
@@ -81,6 +90,15 @@ class Model extends \Pimple
     public function setData($data)
     {
         $this['object'] = new Object($data);
+    }
+    
+    public static function setResultSet($data) {
+        $results = array();
+        foreach ($data as $row) {
+            $result = self::$instance->setData($row);
+            $results[] = $result;
+        }
+        return new Result($results);
     }
 
     public static function create($parameters)
