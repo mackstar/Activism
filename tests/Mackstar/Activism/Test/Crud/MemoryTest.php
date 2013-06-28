@@ -4,6 +4,7 @@ namespace Mackstar\Activism\Test\Crud;
 
 use Mackstar\Activism\Test\Mocks\Models\User;
 use Mackstar\Activism\Base\Config;
+use Mackstar\Activism\Base\Result;
 
 
 class MemoryTest extends \PHPUnit_Framework_TestCase
@@ -42,6 +43,6 @@ class MemoryTest extends \PHPUnit_Framework_TestCase
         $user = User::create(array('name' => 'Akihito'));
         $results = User::findAll();
         $this->assertEquals(count($results),2);
-        
+        $this->assertTrue($results instanceof Result);
     }
 }

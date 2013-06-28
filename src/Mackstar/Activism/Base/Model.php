@@ -60,7 +60,6 @@ class Model extends \Pimple
     }
     
     public static function find($key) {
-        
         static::setUp();
         $instance = self::$instance;
         $data = $instance->getAdapter()->read(array('key' => $key));
@@ -68,13 +67,11 @@ class Model extends \Pimple
         return $instance;
     }
     
-    public static function findAll()
-    {
+    public static function findAll() {
         static::setUp();
         $instance = self::$instance;
         $data = $instance->getAdapter()->read();
-        $instance->setResultSet($data);
-        return $instance;
+        return self::setResultSet($data);
     }
     
     public function toJson()

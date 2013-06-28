@@ -28,4 +28,28 @@ class Result implements \ArrayAccess, \Iterator, \Countable
     public function offsetGet($offset) {
         return isset($this->_data[$offset]) ? $this->_data[$offset] : null;
     }
+    
+    public function key() {
+        
+    }
+    
+    public function valid() {
+        
+    }
+    
+    public function rewind() {
+        
+    }
+    
+    public function count() {
+        return count($this->_data);
+    }
+    
+    public function current() {
+        
+    }
+    
+    public function next() {
+        
+    }
 }
