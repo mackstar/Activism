@@ -44,5 +44,6 @@ class MemoryTest extends \PHPUnit_Framework_TestCase
         $results = User::findAll();
         $this->assertEquals(count($results),2);
         $this->assertTrue($results instanceof Result);
+        $this->assertTrue($results[0] instanceof User);
     }
 }

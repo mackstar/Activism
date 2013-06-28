@@ -92,7 +92,8 @@ class Model extends \Pimple
     public static function setResultSet($data) {
         $results = array();
         foreach ($data as $row) {
-            $result = self::$instance->setData($row);
+            self::$instance->setData($row);
+            $result = self::$instance;
             $results[] = $result;
         }
         return new Result($results);
