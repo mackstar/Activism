@@ -8,24 +8,27 @@ class Memory extends AdapterBase implements AdapterInterface
 {
     protected $_data;
     
-    protected $_config;
+    protected $_class;
     
+    public function __construct($config) {
+        $this->_class = $config['called_class'];
+        parent::__construct($config);
+    }
+
     public function read($array = null) {
-        $class = get_called_class();
         $key = $this->_config['key'];
         if (isset($array['key'])) {
-            return $this->_data[$class][$array['key']];
+            return $this->_data[$this->_class][$array['key']];
         }
-        return $this->_data[$class];
+        return $this->_data[$this->_class];
     }
     
     public function write($array) {
-        $class = get_called_class();
         $key = $this->_config['key'];
         if (!isset($array[$key]) || !$array[$key]) {
             $array[$key] = Security::uuid();
         }
-        $this->_data[$class][$array[$key]] = $array;
+        $this->_data[$this->_class][$array[$key]] = $array;
         return $array;
     }
     

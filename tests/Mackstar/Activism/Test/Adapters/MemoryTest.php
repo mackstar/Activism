@@ -1,28 +1,16 @@
 <?php
 
-namespace Mackstar\Activism\Utilities;
+namespace Mackstar\Activism\Test\Adapters;
 
-use Mackstar\Activism\Adapter\Memory;
+use Mackstar\Activism\Test\Mocks\Adapters\MemoryMock;
 
-class InflectorTest extends \PHPUnit_Framework_TestCase
+class MemoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCamelCasingSingleWord() {
-        $this->assertEquals('Richard', Inflector::camelCase('richard'));
-    }
-
-    public function testCamelCasingUndescoredWord() {
-        $this->assertEquals('LastModified', Inflector::camelCase('last_modified'));
-    }
-
-    public function testCamelCasingDashedWord() {
-        $this->assertEquals('LastModified', Inflector::camelCase('last-modified'));
-    }
-    
-    public function testCamelCasingSpacedWord() {
-        $this->assertEquals('LastModified', Inflector::camelCase('last modified'));
-    }
-    
-    public function testPreviouslyCamelCasedWord() {
-        $this->assertEquals('LastModified', Inflector::camelCase('LastModified'));
+    public function testWrite() {
+        $memory = new MemoryMock(array('key' => 'id', 'called_class' => 'User'));
+        $memory->write(array('id' => '1', 'name' => 'Richard'));
+        $result = $memory->getData();
+        $expected = array('User' => array('1' => array('id' => '1', 'name' => 'Richard')));
+        $this->assertEquals($result, $expected);
     }
 }

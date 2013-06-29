@@ -39,6 +39,7 @@ class Model extends \Pimple
             static::$instance = new $class;
         }
         if ($config = Config::get()) {
+            $config['called_class'] = $class;
             static::$instance->setConfig($config);
         }
     }

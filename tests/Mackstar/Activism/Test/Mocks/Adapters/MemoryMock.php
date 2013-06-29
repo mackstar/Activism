@@ -4,19 +4,17 @@ namespace Mackstar\Activism\Test\Mocks\Adapters;
 
 use Mackstar\Activism\Adapters\Memory;
 
-class MemoryMock extends \PHPUnit_Framework_TestCase
+class MemoryMock extends Memory
 {
-    public function setUp() {
-        Config::add('all', 'default', array('adapter' => 'memory'));
+    public function getData() {
+        return $this->_data;
     }
-
-    public function testThatCallingCreateCreatesAnInstanceOfSelf() {
-        $user = User::create(array('name' => 'Richard'));
-        $this->assertTrue($user instanceof User);
+    
+    public function setData($data) {
+        return $this->_data;
     }
-
-    public function testThatTheParametersOfSelfAreThoseAdded() {
-        $user = User::create(array('name' => 'Richard'));
-        $this->assertEquals($user->getName(), 'Richard');
+    
+    public function setConfig($config) {
+        return $this->_config = $config;
     }
 }
