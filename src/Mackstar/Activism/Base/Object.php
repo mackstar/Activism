@@ -19,4 +19,8 @@ class Object
         }
         return $this->_data[$property];
     }
+    
+    public function getData() {
+        return $this->_data;
+    }
 }

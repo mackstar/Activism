@@ -37,6 +37,14 @@ class MemoryTest extends \PHPUnit_Framework_TestCase
         $result = User::find($user->getId());
         $this->assertEquals(strlen($result->getId()),36);
     }
+    
+    public function testUpdate() {
+        $user = User::create(['name' => 'Richard']);
+        $user->update(['name' => 'Mackstar']);
+        $result = User::find($user->getId());
+        
+        $this->assertEquals($result->getName(),'Mackstar');
+    }
 
     public function testFindAll() {
         $user = User::create(array('name' => 'Richard'));

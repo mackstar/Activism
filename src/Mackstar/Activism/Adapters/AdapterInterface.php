@@ -10,5 +10,5 @@ interface AdapterInterface
     
     public function remove($array);
     
-    public function update($array);
+    public function update($data, $updates);
 }

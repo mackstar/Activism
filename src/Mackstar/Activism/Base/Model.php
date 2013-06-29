@@ -33,6 +33,13 @@ class Model extends \Pimple
         }
     }
     
+    public function update($updates) {
+        $data = $this['object']->getData();
+        $this['adapter']->update($data, $updates);
+        $this->setData($data);
+        return $this;
+    }
+    
     protected static function setUp() {
         $class = get_called_class();
         if (!static::$instance) {

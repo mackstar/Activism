@@ -36,7 +36,10 @@ class Memory extends AdapterBase implements AdapterInterface
         
     }
     
-    public function update($array) {
-        
+    public function update($data, $updates) {
+        $key = $this->_config['key'];
+        $array = array_merge($data, $updates);
+        $this->_data[$this->_class][$data[$key]] = $array;
+        $array;
     }
 }
