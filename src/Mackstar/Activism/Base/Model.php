@@ -70,7 +70,9 @@ class Model extends \Pimple
     public static function find($key) {
         static::setUp();
         $instance = self::$instance;
-        $data = $instance->getAdapter()->read(array('key' => $key));
+        if (!$data = $instance->getAdapter()->read(array('key' => $key))) {
+            return null;
+        }
         $instance->setData($data);
         return $instance;
     }
@@ -82,9 +84,10 @@ class Model extends \Pimple
         return self::setResultSet($data);
     }
     
-    public function toJson()
+    public function remove()
     {
-        
+        $data = $this['object']->getData();
+        return $this['adapter']->remove($data);
     }
     
     public function getAdapter()

@@ -18,8 +18,12 @@ class Memory extends AdapterBase implements AdapterInterface
     public function read($array = null) {
         $key = $this->_config['key'];
         if (isset($array['key'])) {
+            if (!isset($this->_data[$this->_class][$array['key']])) {
+                return null;
+            }
             return $this->_data[$this->_class][$array['key']];
         }
+        
         return $this->_data[$this->_class];
     }
     
@@ -32,8 +36,19 @@ class Memory extends AdapterBase implements AdapterInterface
         return $array;
     }
     
-    public function remove($array) {
-        
+    /**
+     * Delete 
+     *
+     * @param array $data
+     * @return boolean
+     */
+    public function remove($data) {
+        $key = $this->_config['key'];
+        if (isset($this->_data[$this->_class][$data[$key]])) {
+            unset($this->_data[$this->_class][$data[$key]]);
+            return true;
+        }
+        return false;
     }
     
     public function update($data, $updates) {

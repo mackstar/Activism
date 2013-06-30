@@ -42,10 +42,26 @@ class MemoryTest extends \PHPUnit_Framework_TestCase
         $user = User::create(['name' => 'Richard']);
         $user->update(['name' => 'Mackstar']);
         $result = User::find($user->getId());
-        
         $this->assertEquals($result->getName(),'Mackstar');
     }
-
+    
+    public function testReturnsNullWhenDoesntExist() {
+        $user = User::find('idontexist');
+        $this->assertEquals($user,null);
+    }
+    
+    public function testDelete() {
+        $user = User::create(['name' => 'Richard']);
+        $this->assertTrue($user->remove());
+    }
+    
+    public function testDeleteReallyIsDeleted() {
+        $user = User::create(['name' => 'Richard']);
+        $id = $user->getId();
+        $user->remove();
+        $this->assertEquals(User::find($id), null);
+    }
+    
     public function testFindAll() {
         $user = User::create(array('name' => 'Richard'));
         $user = User::create(array('name' => 'Akihito'));
